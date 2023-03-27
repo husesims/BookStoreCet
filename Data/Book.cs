@@ -17,12 +17,12 @@ namespace BookStoreCet.Data
 
         public int? PublisherId { get; set; }
 
-        public virtual Publisher Publisher { get; set; }
+        public virtual Publisher? Publisher { get; set; }
 
 
         public int CategoryId { get; set; }
 
-        public virtual Category Category { get; set; }
+        public virtual Category? Category { get; set; }
 
     }
 
@@ -31,15 +31,16 @@ namespace BookStoreCet.Data
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public virtual List<Book> Books { get; set; }
+        public virtual List<Book>? Books { get; set; }
     }
 
     public class Category
     {
         public int Id { get; set; }
+        [MaxLength(30)]
         public string Name { get; set; }
 
 
-        public virtual List<Book> Books { get; set; }
+        public virtual List<Book>? Books { get; set; } = new List<Book>();
     }
 }

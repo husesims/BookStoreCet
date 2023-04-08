@@ -34,7 +34,7 @@ namespace BookStoreCet.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Categories
+            var category = await _context.Categories.Include(c=>c.Books).ThenInclude(b=>b.Publisher)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (category == null)
             {

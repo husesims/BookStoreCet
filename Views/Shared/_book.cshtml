@@ -1,0 +1,11 @@
+﻿@using BookStoreCet.Data;
+@model Book
+    <div class="row" style="text-align:center" >
+        <div class="card" style="width: 18rem;padding:10px;">
+  <div class="card-body">
+    <h5 class="card-title">@Model.Name</h5>
+    @*<p class="card-text">@Model.Publisher.Name</p>*@
+     <p class="card-text">@Model.Price TL</p>
+    <a asp-controller="Books" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-primary">Buy Now</a>
+  </div>
+</div>

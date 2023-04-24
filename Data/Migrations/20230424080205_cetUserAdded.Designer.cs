@@ -4,6 +4,7 @@ using BookStoreCet.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStoreCet.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230424080205_cetUserAdded")]
+    partial class cetUserAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,9 +167,6 @@ namespace BookStoreCet.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CetUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("NameSurname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -175,8 +175,6 @@ namespace BookStoreCet.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CetUserId");
 
                     b.ToTable("Orders");
                 });
@@ -381,15 +379,6 @@ namespace BookStoreCet.Data.Migrations
                     b.Navigation("Publisher");
                 });
 
-            modelBuilder.Entity("BookStoreCet.Data.Order", b =>
-                {
-                    b.HasOne("BookStoreCet.Data.CetUser", "CetUser")
-                        .WithMany("Orders")
-                        .HasForeignKey("CetUserId");
-
-                    b.Navigation("CetUser");
-                });
-
             modelBuilder.Entity("BookStoreCet.Data.OrderDetail", b =>
                 {
                     b.HasOne("BookStoreCet.Data.Book", "Book")
@@ -463,11 +452,6 @@ namespace BookStoreCet.Data.Migrations
             modelBuilder.Entity("BookStoreCet.Data.Category", b =>
                 {
                     b.Navigation("Books");
-                });
-
-            modelBuilder.Entity("BookStoreCet.Data.CetUser", b =>
-                {
-                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("BookStoreCet.Data.Order", b =>

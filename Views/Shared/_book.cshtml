@@ -6,6 +6,7 @@
     <h5 class="card-title">@Model.Name</h5>
     @*<p class="card-text">@Model.Publisher.Name</p>*@
      <p class="card-text">@Model.Price TL</p>
-    <a asp-controller="Books" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-primary">Buy Now</a>
+    <a asp-controller="Purchase" asp-action="Index" asp-route-id="@Model.Id" class="btn btn-primary">Buy Now</a>
+    <a asp-controller="Purchase" asp-action="Card" asp-route-id="@Model.Id" class="btn btn-secondary">Add to Basket</a>
   </div>
 </div>

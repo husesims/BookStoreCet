@@ -6,9 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BookStoreCet.Data;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace BookStoreCet.Controllers
 {
+    [Authorize]
     public class CategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -17,7 +20,7 @@ namespace BookStoreCet.Controllers
         {
             _context = context;
         }
-
+        [AllowAnonymous]
         // GET: Categories
         public async Task<IActionResult> Index()
         {
@@ -25,7 +28,7 @@ namespace BookStoreCet.Controllers
                           View(await _context.Categories.ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.Categories'  is null.");
         }
-
+        [AllowAnonymous]
         // GET: Categories/Details/5
         public async Task<IActionResult> Details(int? id)
         {
